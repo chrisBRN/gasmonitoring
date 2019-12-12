@@ -14,3 +14,6 @@ buildNumber.properties
 gasmonitoring.iml
 
 target
+
+logs
+resources

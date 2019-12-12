@@ -6,17 +6,25 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectInputStream;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+
 public class S3Client {
+
+    private final static Logger logger = LogManager.getLogger();
+
+
 
     static void fetchJsonFileFromBucket(String bucket_name, String key_name, Regions regions){
 
-        System.out.format("Downloading %s from S3 bucket %s...\n", key_name, bucket_name);
+        logger.info("Downloading " + key_name + " from S3 bucket " + bucket_name + " ...");
 
         final AmazonS3 amazonS3 = AmazonS3ClientBuilder.standard().withRegion(regions).build();
 
@@ -38,20 +46,19 @@ public class S3Client {
             fileOutputStream.close();
 
         } catch (AmazonServiceException e) {
-            System.err.println(e.getErrorMessage());
+            logger.error(e.getErrorMessage());
             System.exit(1);
 
         } catch (FileNotFoundException e) {
-            System.err.println(e.getMessage());
+            logger.error(e.getMessage());
             System.exit(1);
 
         } catch (IOException e) {
-            System.err.println(e.getMessage());
+            logger.error(e.getMessage());
             System.exit(1);
-
-
-
         }
+
+        logger.info("Success");
     }
 
 }
