@@ -3,7 +3,11 @@ import com.amazonaws.regions.Regions;
 
 public class Main {
 
+
+
     public static void main(String args[]) {
+
+
 
         String bucket_name = "eventprocessing-locationss3bucket-7mbrb9iiisk4";
         String key_name = "locations.json";
