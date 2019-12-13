@@ -1,6 +1,6 @@
 package training.gasmonitoring;
 
-public class Location {
+public class LocationBean {
 
     private Double x;
     private Double y;
